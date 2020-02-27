@@ -5,7 +5,9 @@ import getData from '../until/publicacionesGet'
 import { ListItem, Tile } from 'react-native-elements'
 import { Container } from 'native-base';
 import DialogInput from 'react-native-dialog-input';
-import envio from '../until/comprarPlatillo'
+import envio from '../until/comprarPlatillo';
+import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-cards';
+
 export default class Homescreen extends Component {
   constructor(props){
     super(props);
@@ -96,14 +98,38 @@ sendInput(x,y,a,s){
         //   button onPress={() => this.activar(l.nombreproducto, l.precio)}
         //   bottomDivider
         // ></ListItem>
-        <Tile
-        key={l.id}
-  imageSrc={{ source:{uri:l.idimagen}}}
+//         <Tile
+//         key={l.id}
+       
+//   imageSrc={{ source:{uri:l.idimagen}}}
+//   title={`${l.nombreproducto} ${l.precio}`}
+//   caption={l.descripcion}
+//   featured
+//   activeOpacity
+//   onPress={() => this.activar(l.nombreproducto, l.precio)}
+// />
+<Card>
+<CardImage 
+  source={{uri: l.idimagen}} 
   title={`${l.nombreproducto} ${l.precio}`}
-  caption={l.descripcion}
-  featured
-  onPress={() => this.activar(l.nombreproducto, l.precio)}
+  isDark={true}
 />
+<CardTitle
+  subtitle={l.ciudad}
+  isDark={true}
+/>
+<CardContent text={`${l.nombreproducto} ${l.precio}`} />
+<CardAction 
+  separator={true} 
+  isDark={true}
+  inColumn={false}>
+  <CardButton
+    onPress={() => this.activar(l.nombreproducto, l.precio)}
+    title="Comprar"
+    color="#FEB557"
+  />
+</CardAction>
+</Card>
         
         )
       

@@ -9,6 +9,8 @@ import { AsyncStorage } from 'react-native';
 import Cabecera from '../headers/header'
 import Registro from '../register/registro'
 import Ventas from '../ventas/ventas'
+import Compras from '../compras/compras';
+import Perfil from '../perfil/perfil'
 enableScreens();
 const Tab = createBottomTabNavigator();
 export default class Nav extends React.Component {
@@ -58,6 +60,13 @@ usuario(){
         headerStyle: { backgroundColor: 'tomato' },
       }}
     >
+       <Tab.Screen
+        name="Login"
+        component={Contactscreen}
+        options={{
+          title: 'Login',
+        }}
+      />
       <Tab.Screen
         name="Home"
         component={Homescreen}
@@ -72,6 +81,13 @@ usuario(){
           title: 'Publicar',
         }}
       />
+       <Tab.Screen
+        name="Compras"
+        component={Compras}
+        options={{
+          title: 'Compras',
+        }}
+      />
       <Tab.Screen
         name="Ventas"
         component={Ventas}
@@ -81,7 +97,7 @@ usuario(){
       />
       <Tab.Screen
         name="Mi Perfil"
-        component={Contactscreen}
+        component={Perfil}
         options={{
           gestureEnabled: false,
         }}
@@ -93,6 +109,7 @@ usuario(){
           gestureEnabled: false,
         }}
       />
+        
     </Tab.Navigator>
     </NavigationContainer>
   );

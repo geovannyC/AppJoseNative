@@ -4,9 +4,9 @@ import { Button, View, Text, StyleSheet,  ScrollView, AsyncStorage } from 'react
 import { ListItem } from 'react-native-elements'
 import { Container } from 'native-base';
 import DialogInput from 'react-native-dialog-input';
-import getData from '../../until/listaventas'
+import getData from '../../until/listacompras'
 import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-cards';
-export default class Ventas extends Component {
+export default class Compras extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -41,8 +41,8 @@ export default class Ventas extends Component {
       this.setState({
         data: data,
         loading: false,
-      }) 
-    }
+      })
+    } 
     });
 
  }
@@ -53,7 +53,6 @@ render() {
         <Text>CARGANDO</Text>
       </View>
     }else{
-      // if(this.state.data===null||this.state.data===[])
       try{
         return (
           <Container>
@@ -65,52 +64,26 @@ render() {
           
             return(
          
-            //   <ListItem key={i}
-            //   leftAvatar={{ source: {uri:l.idimagen}}}
-              
-            //   title={l.nombreproducto}
-            //   subtitle={`Nombre: ${l.nombrecomprador} ${l.apellidocomprador}`}
-            //   rightSubtitle={l.precio}
-            //   rightTitle={l.ciudad}
-            // //   button onPress={() => this.activar(l.nombreproducto, l.precio)}
-            //   bottomDivider
-            // ></ListItem>
             <Card>
             <CardTitle
             title={l.nombreproducto}
-              subtitle={`Nombre: ${l.nombrecomprador} ${l.apellidocomprador}`}
+              subtitle={`Nombre: ${l.nombrevendedor} ${l.apellidovendedor}`}
             />
-            <CardContent text={`Correo: ${l.correocomprador}`}/>
-            <CardContent text={`Telefono:  ${l.telefonocomprador}`}/>
+            <CardContent text={`Correo: ${l.emailvendedor}`}/>
+            <CardContent text={`Telefono:  ${l.telefonovendedor}`}/>
             <CardContent text={`Fecha Venta: ${l.fechacompra}`}/>
              <CardContent text={`Precii:  ${l.precio}`}/>
     
             <CardAction 
               separator={true} 
               inColumn={false}>
-              <CardButton
-                onPress={() => {}}
-                title="Share"
-                color="#FEB557"
-              />
-              <CardButton
-                onPress={() => {}}
-                title="Explore"
-                color="#FEB557"
-              />
+         
             </CardAction>
           </Card>
             )
           
          
         } )}
-           {/* <DialogInput isDialogVisible={this.state.isDialogVisible}
-                title={this.contenido()}
-    
-                hintInput ={"5"}
-                submitInput={ () => {this.sendInput(this.state.nombreproducto,this.state.precio,this.state.usuarioActual, this.state.correo)} }
-                closeDialog={ () => {this.desactivar()}}>
-    </DialogInput> */}
               
           </View>
           </ScrollView>
@@ -118,8 +91,8 @@ render() {
         </Container>
        
         )
-      }catch{ return <Text>No tienes compras</Text>}
- 
+      }catch{return <Text>No haz realizado ninguna compra</Text>}
+
   }
 }
 }
