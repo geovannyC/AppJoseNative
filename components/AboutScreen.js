@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
-import base64 from 'react-native-base64'
+
 import { Button, View, Text, TextInput,
     StyleSheet,
     Image,
@@ -12,12 +12,11 @@ import { Button, View, Text, TextInput,
   } from 'react-native';
 
 import Dialog from "react-native-dialog";
-import enviarData from '../until/registro';
 
-let url = 'http://192.168.100.38:4000/contenido';
+let url = 'http://192.168.100.37:4000/contenido';
 
-const imagen = ("data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==")
-export default class Registro extends Component {
+
+export default class AboutScreen extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -118,7 +117,6 @@ export default class Registro extends Component {
       try {
         const miid = await AsyncStorage.getItem('id');
         const user = await AsyncStorage.getItem('user');
-        
         if (miid !== null) {
           // We have data!!
            this.setState({
@@ -163,7 +161,7 @@ mostrardatos(){
       this.setState({
         imagen1: `data:image/jpeg;base64,${pickerResult.base64}`
       })
-      console.log(pickerResult.base64);
+     
     };
 
   render() {

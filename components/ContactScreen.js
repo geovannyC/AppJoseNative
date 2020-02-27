@@ -32,7 +32,7 @@ export default class Contactscreen extends Component {
         })
     }
 
-    setLocal=async(x,y)=>{
+    setLocal=async( x,y)=>{
         await getData(x,y).then((data)=>{
             if(data === 'usuario incorrecto'){
                 this.dialogActivador()
@@ -42,15 +42,28 @@ export default class Contactscreen extends Component {
                 usuario: data[0]['nombre'],
                 correo: data[0].correo
             })
-            console.log(data[0].id)
+            
             AsyncStorage.setItem('id', String(data[0].id));
-            AsyncStorage.setItem('user', String(data[0]['nombre']));    
+            AsyncStorage.setItem('user', String(data[0]['nombre']))
+            AsyncStorage.setItem('correo', String(data[0]['correo']));    
             // window.location.href='http://localhost:3000'
             this.props.navigation.navigate('Home')
-               
+            console.log(this.state.correo)
         }  
         })
+
         
+      };
+      _retrieveData = async () => {
+        try {
+          const user = await AsyncStorage.getItem('user');
+          const correo = await AsyncStorage.getItem('correo')
+          
+            console.log(user,correo)
+          
+        } catch (error) {
+          // Error retrieving data
+        }
         
       };
     dialogActivador(){
@@ -77,27 +90,31 @@ export default class Contactscreen extends Component {
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-         <TextInput
-      style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-      onChangeText={(email) => {this.emailInput(String(email))}}
-      value={this.state.email}
-    />
-     <TextInput
-      style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-      onChangeText={(contra) => {this.contraInput(String(contra))}}
-      value={this.state.contra}
-    />
-     <Button
-          title="Ingresar"
-          color="#f194ff"
-          onPress={() =>this.setLocal(this.state.email,this.state.contra)}
+        <TextInput
+            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+            onChangeText={(email) => {this.emailInput(String(email))}}
+            value={this.state.email}
         />
-    
+        <TextInput
+            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+            onChangeText={(contra) => {this.contraInput(String(contra))}}
+            value={this.state.contra}
+        />
+        <Button
+            title="Ingresar"
+            color="#f194ff"
+            onPress={() =>this.setLocal(this.state.email,this.state.contra)}
+        />
+        <Button
+            title="Ingresar"
+            color="#f194ff"
+            onPress={() =>this._retrieveData()}
+        />
         <Dialog.Container visible={this.state.dialogVisible}>
-    <Dialog.Title>{this.alertInicioSessionTitulo()}</Dialog.Title>
+            <Dialog.Title>{'Usuario o contraseña incorrectos'}</Dialog.Title>
         
-          <Dialog.Button label="Cancel" onPress={()=>this.dialogActivador()} />
-          <Dialog.Button label="Delete" onPress={()=>this.dialogActivador()} />
+            <Dialog.Button label="Cancel" onPress={()=>this.dialogActivador()} />
+            <Dialog.Button label="Delete" onPress={()=>this.dialogActivador()} />
         </Dialog.Container>
       </View>
       

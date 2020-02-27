@@ -1,5 +1,5 @@
 const enviarData=async(x)=>{
-    const url = 'http://192.168.100.38:4000/registro'
+    const url = 'http://192.168.100.37:4000/registro'
     
     try{
       const response = await fetch(url,{

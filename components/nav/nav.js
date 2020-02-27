@@ -8,10 +8,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { AsyncStorage } from 'react-native';
 import Cabecera from '../headers/header'
 import Registro from '../register/registro'
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+import Ventas from '../ventas/ventas'
 enableScreens();
-
 const Tab = createBottomTabNavigator();
 export default class Nav extends React.Component {
   constructor(props){
@@ -72,6 +70,13 @@ usuario(){
         component={Aboutscreen}
         options={{
           title: 'Publicar',
+        }}
+      />
+      <Tab.Screen
+        name="Ventas"
+        component={Ventas}
+        options={{
+          title: 'Ventas',
         }}
       />
       <Tab.Screen

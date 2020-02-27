@@ -1,6 +1,6 @@
 const getData=async(user, pass)=>{
   
-      const response = await fetch(`http://192.168.100.38:4000/login/${user}/${pass}/`, {
+      const response = await fetch(`http://192.168.100.37:4000/login/${user}/${pass}/`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',

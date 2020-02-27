@@ -1,6 +1,5 @@
-const url = 'http://192.168.100.37:4000/publicaciones'
-const getData=async()=>{
-    const response = await fetch(url, {
+const getData=async(x)=>{
+    const response = await fetch(`http://192.168.100.37:4000/ventas/${x}`, {
       method: 'GET',
       headers: {
           'Accept': 'application/json',
