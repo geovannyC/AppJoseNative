@@ -30,6 +30,17 @@ export default class Homescreen extends Component {
     });
 
  }
+  removeItemValue=async()=> {
+  try {
+      await AsyncStorage.removeItem('id');
+      await AsyncStorage.removeItem('user');
+      await AsyncStorage.removeItem('correo');
+      return true;
+  }
+  catch(exception) {
+      return false;
+  }
+}
  _retrieveData = async () => {
   try {
     const user = await AsyncStorage.getItem('user');

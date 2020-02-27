@@ -31,7 +31,17 @@ export default class Contactscreen extends Component {
             contra: event
         })
     }
-
+    removeItemValue=async()=> {
+        try {
+            await AsyncStorage.removeItem('id');
+            await AsyncStorage.removeItem('user');
+            await AsyncStorage.removeItem('correo');
+            return true;
+        }
+        catch(exception) {
+            return false;
+        }
+      }
     setLocal=async( x,y)=>{
         await getData(x,y).then((data)=>{
             if(data === 'usuario incorrecto'){
@@ -106,9 +116,9 @@ export default class Contactscreen extends Component {
             onPress={() =>this.setLocal(this.state.email,this.state.contra)}
         />
         <Button
-            title="Ingresar"
+            title="Cerrar Sesion"
             color="#f194ff"
-            onPress={() =>this._retrieveData()}
+            onPress={() =>this.removeItemValue()}
         />
         <Dialog.Container visible={this.state.dialogVisible}>
             <Dialog.Title>{'Usuario o contraseña incorrectos'}</Dialog.Title>
